@@ -1,0 +1,51 @@
+<!-- templates/encrypt_text.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cifrado de Texto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cifrado de Texto</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="flashes">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="text_to_encrypt">Texto a Cifrar:</label>
+                <textarea id="text_to_encrypt" name="text_to_encrypt" rows="4" required></textarea><br>
+            </div>
+            <div class="form-group">
+                <label for="encryption_method">Método de Cifrado:</label>
+                <select id="encryption_method" name="encryption_method">
+                    <option value="rsa">RSA</option>
+                    <option value="aes">AES</option>
+                </select><br>
+            </div>
+            
+            <button type="submit">Cifrar</button>
+        </form>
+        
+        {% if ciphertext %}
+            <div>
+                <p>Texto Cifrado (en hex):</p>
+                <textarea rows="4" readonly>{{ ciphertext }}</textarea>
+                <p>Clave Pública:</p>
+                <textarea rows="6" readonly>{{ public_key }}</textarea>
+                <p>Clave Privada:</p>
+                <textarea rows="12" readonly>{{ private_key }}</textarea>
+            </div>
+        {% endif %}
+        
+        <a href="{{ url_for('back') }}"><button>Volver al Menú Principal</button></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú Principal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Menú Principal</h1>
+        <a href="{{ url_for('generate_password_route') }}"><button>Generar Contraseña</button></a>
+        <a href="{{ url_for('encrypt_text') }}"><button>Cifrar Texto</button></a>
+    </div>
+</body>
+</html>
